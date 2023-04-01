@@ -23,3 +23,9 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+
+
+// Rutas
+Route.group(() => {
+  Route.post('login', 'LoginController.index')
+}).prefix('/api')

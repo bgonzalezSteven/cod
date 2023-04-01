@@ -1,11 +1,17 @@
 
 const routes = [
   {
-    path: '/',
+    path: 'perr',
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') }
-    ]
+    ],
+
+
+
+    // Ruta del Login
+    path: '/',
+    component: () => import('src/layouts/login_Page.vue')
   },
 
   // Always leave this as last one,
