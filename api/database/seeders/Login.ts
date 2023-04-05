@@ -1,10 +1,10 @@
 import BaseSeeder from '@ioc:Adonis/Lucid/Seeder'
-import Login from 'App/Models/Login'
+import User from 'App/Models/User'
 
 export default class extends BaseSeeder {
   public async run() {
     const uniqueKey  = 'id'
-    await Login.updateOrCreateMany(uniqueKey , [
+    await User.updateOrCreateMany(uniqueKey , [
       {
         id: 1,
         email: 'admin@adonisjs.com',

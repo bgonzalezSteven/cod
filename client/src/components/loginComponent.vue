@@ -26,9 +26,11 @@ export default {
       if (form.email && form.password) {        
         $q.loading.show()
         api.post('login', form).then(res => {
-          $q.loading.hide()
           console.log(res)
+        }).catch(res => {
+          console.log(res, 'ehjbdhje')
         })
+        $q.loading.hide()
       } else {
         $q.notify({
           type: 'negative',

@@ -6,17 +6,9 @@ export default class extends BaseSchema {
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table
-        .integer('role_id')
-        .unsigned()
-        .references('roles.id')
-        .onDelete('CASCADE')
-      table
-        .integer('login_id')
-        .unsigned()
-        .references('logins.id')
-        .onDelete('CASCADE')
-      table.unique(['role_id', 'login_id'])
+      table.integer('role_id').unsigned().references('roles.id').onDelete('CASCADE')      
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
+      table.unique(['role_id', 'user_id'])
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
