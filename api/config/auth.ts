@@ -52,7 +52,7 @@ const authConfig: AuthConfig = {
         type: 'api',
         driver: 'database',
         table: 'api_tokens',
-        foreignKey: 'userId',
+        foreignKey: 'user_id',
       },
 
       provider: {

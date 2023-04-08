@@ -88,12 +88,14 @@ export default boot(({ app }) => {
   /// Antes de cada Peticion debo enviar el token de existir claramente
   api.interceptors.request.use(async function(config) { 
     infoLogin.fetchAccessToken() // Verificamos si existe un token, sino lo almacenamos
-    if (infoLogin.sessionInfo) {
+    const token = infoLogin.sessionInfo !== null ? infoLogin.sessionInfo.token : false;
+    console.log(token, 'Token')
+    if (token) {
       if (!config.headers) {
         config.headers = {}
       }
       config.headers = {
-        Authorization: `Bearer ${infoLogin.sessionInfo}`
+        Authorization: `Bearer ${token}`
       }
     }
     return config 

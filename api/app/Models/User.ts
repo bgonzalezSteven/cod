@@ -29,9 +29,6 @@ export default class User extends BaseModel {
     }
   }
 
-  @hasOne(() => UserRole, {
-     localKey: 'id',
-     foreignKey: 'UserId',
-  })
+  @hasOne(() => UserRole)
   public role: HasOne<typeof UserRole>
 }
