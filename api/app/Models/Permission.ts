@@ -6,9 +6,8 @@ export default class Permission extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  
   @column()
-  public role_id: number
+  public roleId: number
 
   @column()
   public slug: string
