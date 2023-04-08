@@ -15,7 +15,7 @@ export const UseLoginInfo = defineStore("infoLogin", {
       }
     },
     getinfoMenuUser() {
-      return (this.sessionInfo)
+      return ({name: this.sessionInfo.role, email: this.sessionInfo.email})
     }
   },
   actions: {

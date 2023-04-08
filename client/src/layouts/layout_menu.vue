@@ -18,7 +18,7 @@
                   </q-avatar>
 
                   <div class="text-weight-bold q-mt-md q-mb-xs">
-                    {{ state.info.role }}
+                    {{ state.info.name }}
                   </div>
                   <div class="text-weight-bold q-mt-md q-mb-xs">Usuario:</div>
                   <div class="text-weight">{{ state.info.email }}</div>
@@ -76,7 +76,7 @@ export default {
         })
         router.push('/')
       } else {
-        state.info = JSON.parse(localStorage.getItem('sessionInfo'))
+        state.info = login.getinfoMenuUser
       }
     })
     return {
