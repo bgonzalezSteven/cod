@@ -8,7 +8,17 @@ const routes = [
   {
     path: "/menu",
     component: () => import("layouts/layout_menu.vue"),
-    children: [{ path: "", component: () => import("pages/IndexPage.vue") }],
+    children: [
+      { path: "", component: () => import("pages/IndexPage.vue") },
+      {
+        path: "/list",
+        component: () => import("pages/admin/listDocuments.vue"),
+      },
+      {
+        path: "/form",
+        component: () => import("pages/admin/formDocuments.vue"),
+      },
+    ],
   },
 
   // Always leave this as last one,
