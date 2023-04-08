@@ -29,3 +29,8 @@ Route.get('/', async () => {
 Route.group(() => {
   Route.post('login', 'LoginController.index')
 }).prefix('/api')
+
+// Rutas
+Route.group(() => {
+  Route.get('getInfo', 'LoginController.show')
+}).prefix('/api').middleware('auth')

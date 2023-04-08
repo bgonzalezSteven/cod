@@ -3,7 +3,6 @@ import axios from 'axios'
 import env from 'src/env'
 import { UseLoginInfo } from 'src/stores/loginInfo';
 
-const infoLogin = UseLoginInfo()
 import { Notify } from 'quasar';
 
 // Be careful when using SSR for cross-request state pollution
@@ -15,6 +14,7 @@ import { Notify } from 'quasar';
 const api = axios.create({ baseURL: env.apiUrl })
 
 export default boot(({ app }) => {
+const infoLogin = UseLoginInfo()
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios
@@ -43,8 +43,8 @@ export default boot(({ app }) => {
             localStorage.setItem("sessionInfo", JSON.stringify(res.data));
           }
         }
-        return res.data;
       }
+        return res.data;
     },
     function (error) {
       console.log(error)

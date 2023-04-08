@@ -10,25 +10,30 @@
   </q-form>
 </template>
 <script>
-import { reactive } from 'vue'
+import { reactive, onMounted } from 'vue'
 import { useQuasar } from 'quasar'
 import { api } from 'src/boot/axios'
 import { useRouter } from 'vue-router'
+import { UseLoginInfo } from 'src/stores/loginInfo'
 export default {
   setup() {
     const $q = useQuasar()
     const router = useRouter()
+    const login = UseLoginInfo()
 
     const form = reactive({
       email: '',
       password: ''
+    })
+    onMounted(() => {
+      login.logout()
     })
 
     function save() {
       if (form.email && form.password) {        
         $q.loading.show()
         api.post('login', form).then(res => {
-          console.log(router)
+          login.login(res)
           router.push('/menu')
         }).catch(res => {
           console.log(res, 'ehjbdhje')

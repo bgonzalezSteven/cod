@@ -23,9 +23,14 @@ export default class LoginController {
          type: usr.type,
          email: usr.user.email
        }
+       console.log(temp)
         return (temp)
      } catch (error) {
        response.status(401).send()
     }
+  }
+
+  public async show({ auth, response}) {
+    response.send(await User.findBy('id', auth.user.id))
   }
 }
