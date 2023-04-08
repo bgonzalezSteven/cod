@@ -7,7 +7,7 @@ export default class LoginController {
   public async index({ auth, request, response }) {
     const info = await request.all()
      try {
-        const usr = (await auth.attempt(info.email, info.password))
+        const usr = (await auth.use('api').attempt(info.email, info.password))
         const infoUser = ((await User.query().preload('role').where({'email': info.email})))
         const permission = (await Role.query().preload('permission').where({ 'id': infoUser[0].role.roleId }))[0]
         usr.role = permission.role
@@ -17,7 +17,7 @@ export default class LoginController {
         })
        const temp = {
          name: usr.name,
-         token: usr.token,
+         token: usr.tokenHash,
          permissions: usr.permissions,
          role: usr.role,
          type: usr.type,
@@ -32,5 +32,12 @@ export default class LoginController {
 
   public async show({ auth, response}) {
     response.send(await User.findBy('id', auth.user.id))
+  }
+
+  public async closeSession({ auth }) {
+    await auth.use('api').revoke()
+    return {
+      revoke: true
+    }
   }
 }

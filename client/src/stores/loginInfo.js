@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { api } from "src/boot/axios";
 
 export const UseLoginInfo = defineStore("infoLogin", {
   state: () => ({
@@ -7,16 +8,16 @@ export const UseLoginInfo = defineStore("infoLogin", {
   getters: {
     getsessionInfo() {
       const info = JSON.parse(localStorage.getItem("sessionInfo"));
-      if (info || (this.sessionInfo !== null)) {        
+      if (info || this.sessionInfo !== null) {
         this.sessionInfo = info;
-        return true
+        return true;
       } else {
-        return false
+        return false;
       }
     },
     getinfoMenuUser() {
-      return ({name: this.sessionInfo.role, email: this.sessionInfo.email})
-    }
+      return { name: this.sessionInfo.role, email: this.sessionInfo.email };
+    },
   },
   actions: {
     fetchAccessToken() {
@@ -27,12 +28,29 @@ export const UseLoginInfo = defineStore("infoLogin", {
       }
     },
     logout() {
-      this.sessionInfo = null
-      localStorage.clear()
+      this.sessionInfo = null;
+      localStorage.clear();
+      api.post("sesionClose").then((res) => {
+        console.log(res);
+      });
     },
     login(info) {
-      this.sessionInfo = info
+      this.sessionInfo = info;
       localStorage.setItem("sessionInfo", JSON.stringify(info));
-    }
+    },
+    can(state) {
+      const userInfo = JSON.parse(localStorage.getItem("sessionInfo"));
+      const per =
+        userInfo !== null
+          ? userInfo.permissions.filter((item) => {
+              return item === state;
+            }).length
+          : 0;
+      if (per > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
 });

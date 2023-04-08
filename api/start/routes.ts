@@ -33,4 +33,5 @@ Route.group(() => {
 // Rutas
 Route.group(() => {
   Route.get('getInfo', 'LoginController.show')
+  Route.post('sesionClose', 'LoginController.closeSession')
 }).prefix('/api').middleware('auth')

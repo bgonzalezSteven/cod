@@ -8,11 +8,17 @@ export default class extends BaseSeeder {
       {
         id: 1,
         role_id: 1,
-        slug: 'admin.list',
+        slug: 'admin',
         description: 'Listado general',
       },
       {
         id: 2,
+        role_id: 1,
+        slug: 'admin.list',
+        description: 'Listado general',
+      },
+      {
+        id: 3,
         role_id: 1,
         slug: 'admin.form',
         description: 'Formulario',
