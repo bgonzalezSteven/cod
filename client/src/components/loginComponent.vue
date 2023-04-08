@@ -13,9 +13,11 @@
 import { reactive } from 'vue'
 import { useQuasar } from 'quasar'
 import { api } from 'src/boot/axios'
+import { useRouter } from 'vue-router'
 export default {
   setup() {
     const $q = useQuasar()
+    const router = useRouter()
 
     const form = reactive({
       email: '',
@@ -26,7 +28,8 @@ export default {
       if (form.email && form.password) {        
         $q.loading.show()
         api.post('login', form).then(res => {
-          console.log(res)
+          console.log(router)
+          router.push('/menu')
         }).catch(res => {
           console.log(res, 'ehjbdhje')
         })
