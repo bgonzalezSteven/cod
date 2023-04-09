@@ -18,6 +18,10 @@ const routes = [
         path: "/form",
         component: () => import("pages/admin/formDocuments.vue"),
       },
+      {
+        path: "/form/:id",
+        component: () => import("pages/admin/formDocuments.vue"),
+      },
     ],
   },
 

@@ -30,14 +30,12 @@ export default class LoginController {
     }
   }
 
-  public async show({ auth, response}) {
+  public async show({ auth, response }) {
     response.send(await User.findBy('id', auth.user.id))
   }
 
-  public async closeSession({ auth }) {
+  public async closeSession({ auth,response }) {
     await auth.use('api').revoke()
-    return {
-      revoke: true
-    }
+    response.status(201).send({ revoke: true})
   }
 }

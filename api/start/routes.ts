@@ -34,4 +34,10 @@ Route.group(() => {
 Route.group(() => {
   Route.get('getInfo', 'LoginController.show')
   Route.post('sesionClose', 'LoginController.closeSession')
+
+  // Documents controllers
+  Route.post('documents', 'DocumentsController.store')
+  Route.get('documents', 'DocumentsController.show')
+  Route.get('documents/:id', 'DocumentsController.index')
+  Route.delete('documents/:id', 'DocumentsController.destroy')
 }).prefix('/api').middleware('auth')

@@ -99,13 +99,13 @@ export default {
         children: [
           {
             name: 'Listado',
-            url: 'list',
+            url: '/list',
             permission: 'admin.list',
             icon: 'format_list_bulleted'
           },
           {
             name: 'Formulario',
-            url: 'form',
+            url: '/form',
             permission: 'admin.form',
             icon: 'assignment'
           },
