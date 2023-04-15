@@ -15,6 +15,7 @@ export default class LoginController {
         permission.permission.map((element) => {
           usr.permissions.push(element.slug)
         })
+       
        const temp = {
          name: usr.name,
          token: usr.tokenHash,
