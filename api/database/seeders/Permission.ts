@@ -7,19 +7,19 @@ export default class extends BaseSeeder {
     await Permission.updateOrCreateMany(uniqueKey, [
       {
         id: 1,
-        role_id: 1,
+        roleId: 1,
         slug: 'admin',
         description: 'Listado general',
       },
       {
         id: 2,
-        role_id: 1,
+        roleId: 1,
         slug: 'admin.list',
         description: 'Listado general',
       },
       {
         id: 3,
-        role_id: 1,
+        roleId: 1,
         slug: 'admin.form',
         description: 'Formulario',
       }
