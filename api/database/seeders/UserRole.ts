@@ -7,8 +7,8 @@ export default class extends BaseSeeder {
     await UserRole.updateOrCreateMany(uniqueKey, [
       {
         id: 1,
-        user_id: 1,
-        role_id: 1
+        userId: 1,
+        roleId: 1
       }
     ])
   }
