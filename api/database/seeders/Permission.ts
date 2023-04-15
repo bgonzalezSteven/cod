@@ -23,6 +23,7 @@ export default class extends BaseSeeder {
         slug: 'admin.form',
         description: 'Formulario',
       }
+      
     ])
   }
 }
