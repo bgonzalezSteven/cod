@@ -4,6 +4,9 @@
       <q-toolbar style="border-radius: 0em 0em 2em 2em" class="bg-primary text-white">
         <q-btn dense flat round icon="short_text" @click="left = !left" />
         <q-space />
+        <template v-if="route.path != '/menu'">
+          <q-btn dense flat round icon="arrow_back_ios_new" @click="router.go(-1)" class="q-mr-mg"/>
+        </template>        
         <q-drawer show-if-above v-model="left" side="left" behavior="mobile">
           <div class="row justify-center">
             <q-img src="https://cdn.quasar.dev/img/blueish.jpg" style="height: 150px">
@@ -78,11 +81,12 @@
 <script>
 import { reactive, onMounted, ref } from 'vue'
 import { UseLoginInfo } from 'src/stores/loginInfo'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router';
 import { useQuasar } from 'quasar';
 export default {
   setup() {
     const router = useRouter()
+    const route = useRoute()
     const $q = useQuasar()
     const login = UseLoginInfo()
     const left = ref(false)
@@ -131,7 +135,7 @@ export default {
       state.titulo = params
     }
     return {
-      left, state, onMounted, exit, itemsMenu, login, setTittle
+      left, state, onMounted, exit, itemsMenu, login, setTittle, router, route
     }
   },
 }

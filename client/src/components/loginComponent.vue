@@ -30,15 +30,15 @@ export default {
     })
 
     function save() {
-      if (form.email && form.password) {        
+      if (form.email && form.password) {
         $q.loading.show()
         api.post('login', form).then(res => {
           login.login(res)
           router.push('/menu')
+          $q.loading.hide()
         }).catch(res => {
           console.log(res, 'ehjbdhje')
         })
-        $q.loading.hide()
       } else {
         $q.notify({
           type: 'negative',
@@ -46,7 +46,7 @@ export default {
         })
       }
     }
-    
+
     return {
       form, save
     }

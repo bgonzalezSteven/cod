@@ -40,4 +40,12 @@ Route.group(() => {
   Route.get('documents', 'DocumentsController.show')
   Route.get('documents/:id', 'DocumentsController.index')
   Route.delete('documents/:id', 'DocumentsController.destroy')
+  // Documents Controller
+
+
+  // Pdf Controller
+  Route.post('generate/:id', 'PdfsController.generate')
+
+  // Pdf Controller
+
 }).prefix('/api').middleware('auth')
