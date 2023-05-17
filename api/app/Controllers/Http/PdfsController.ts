@@ -6,7 +6,6 @@ import Document from "App/Models/Document"
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs
-
 // const pdfmake = import('pdfmake')
 // const moment = import("moment")
 // const Helpers = import("Helpers")
@@ -20,14 +19,19 @@ export default class PdfsController {
 
   public async generate ({ params /*, ,response, request*/}) {
     const dates = await Document.findBy('id', params.id)
-    console.log(dates)
     
+    let file1 = []
+    let file2 = []
+    file1.push({text: 'Exportador', border: [true, true, false, false]},{text: '', border: [false, true, false, false]}, {text: 'Importador', border: [true, true, true, false]})
+    file2.push({text: `${dates?.export}`, border: [true, false, false, true]}, {text: '', border: [false, false, false, true]},{text: `${dates.import}`, border: [true, false, true, true]})
+
+
     const docDefinition = {
       pageSize: 'A4',
-      pageMargins: [40, 60, 40, 60],
+      pageMargins: [40, 90, 21, 0],
       header: [
         {
-          margin: [45, 30,0, 100],
+          margin: [45, 30,21, 0],
           columns: [
             {
               alignment: 'left',
@@ -37,8 +41,7 @@ export default class PdfsController {
 
             },
             {
-              margin: [12,-9,-100,100],
-              alignment: 'left',
+              margin: [12,-9,-3,100],
               text: [
                 {
                   text: 'Av. Benjamin Constant, 876\n\nCentro\nTels: 95 40095378\nFax: 95 32241557\nCEP: 69301020\nBR039CLV230000282900\nBOA VISTA RR BRASIL\n',
@@ -47,15 +50,25 @@ export default class PdfsController {
               ]
             },
             {
-              margin: [-100,-17,0,0],
-              alignment: 'left',
+              absolutePosition: { x: 360, y: 15 },
               width: 'auto',
               text: [
                 {
-                  text: 'CERTIFICADO DE LIVRE VENDA',
-                  fontSize: 15,
+                  text: `CERTIFICADO DE LIVRE VENDA\n\n\n`,
+                  fontSize: 15.5,
                   italics: true,
                   bold: true
+                }
+              ]
+            },
+            {
+              absolutePosition: { x: 350, y: 58 },
+              width: 'auto',
+              text: [
+                {
+                  text: `${dates?.correlativeNumber}`,
+                  fontSize: 12,
+                  bold: true,
                 }
               ]
             }
@@ -65,10 +78,32 @@ export default class PdfsController {
       ],
       content: [
         {
-          margin: [0,100,0,0],
-          text: 'Hola, mundo!', fontSize: 20
+          margin: [0, 3, 0, 0],
+          alignment: 'right',
+          text: [{
+            text: 'Pagina: 1 de 1',
+            fontSize: 6
+          }]
+        },
+        {
+          style: 'tables',
+          margin: [-3,5,0,0],
+          table: {
+            widths: ['*', 10, '*'],
+            heights: [2.5,2.5],
+            body: [
+              file1,
+              file2,
+              
+            ]
+			    }
         }
-      ]
+      ],
+      styles: {
+        tables: {
+          fontSize: 6,
+        }
+      }
     };
 
     const pdfDocGenerator = pdfMake.createPdf(docDefinition)
