@@ -37,6 +37,6 @@ export default class LoginController {
 
   public async closeSession({ auth,response }) {
     await auth.use('api').revoke()
-    response.status(201).send({ revoke: true})
+    response.status(204).send({ revoke: true})
   }
 }

@@ -1,30 +1,24 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
-
+import { BaseModel, afterCreate, afterFind, beforeFind, beforeSave, beforeUpdate, column } from '@ioc:Adonis/Lucid/Orm'
+//fkjdbsbdf//
 export default class Document extends BaseModel {
   @column({ isPrimary: true })
   public id: number
     
+  @column({ serializeAs: 'json' })
+    public table: object
+  
   @column()
-    public export: string
+  public export: string
   
   @column()
     public import: string
   
   @column()
+    public money: string
+  
+  @column()
     public consignee: string
-  
-  @column()
-    public quantity: string
-  
-  @column()
-    public species: string
-  
-  @column()
-    public descriptionOfGoods: string
-  
-  @column()
-    public value: string
   
   @column()
     public marksAndNumbers: string
@@ -47,5 +41,14 @@ export default class Document extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
+  @afterFind()
+  public static async hideTable(table: Document) {
+    return table.$attributes.table = JSON.parse(table.table)
+  }
+
+  @beforeSave()
+  public static async HashTable(table: Document) {
+    return table.$attributes.table = JSON.stringify(table.table)
+  }
 
 }

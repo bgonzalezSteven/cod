@@ -41,6 +41,11 @@
                       Editar
                     </q-tooltip>
                   </q-btn>
+                  <q-btn @click="print(props.row.id)" rounded icon="print" size="sm" class="q-mr-md bg-accest">
+                    <q-tooltip class="bg-secondary" :offset="[10, 10]">
+                      Imprimir
+                    </q-tooltip>
+                  </q-btn>
                 </q-td>
 
                 <q-td v-for="col in props.cols" :key="col.name" :props="props">
@@ -106,6 +111,12 @@ export default {
     function edit(id) {
       router.push(`/form/${id}`)
     }
+    function print(id) {
+      $q.loading.show()
+      api.post(`generate/${id}`).then(res => {
+        $q.loading.hide()
+      })
+    }
     function deleted(id) {
       $q.dialog({
         title: 'Connfirmación',
@@ -129,7 +140,7 @@ export default {
     }
 
     return {
-      date, getInfo, onMounted, filter: ref(''), deleted, edit,
+      date, getInfo, onMounted, filter: ref(''), deleted, edit, print
     }
   }
 }
@@ -141,5 +152,9 @@ export default {
   .q-table__bottom,
   thead tr:first-child th 
     background-color: $primary
+
+.q-table--bordered
+  border-radius: 1em
+  
 
 </style>
