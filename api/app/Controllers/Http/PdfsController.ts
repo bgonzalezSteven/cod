@@ -31,13 +31,15 @@ export default class PdfsController {
 
     let file1_ = [{ text: 'Quantidade', alignment: 'center' , margin: [0,3,0,0]}, { text: 'Espécie', alignment: 'center' , margin: [0,3,0,0]}, { text: 'Denominação das Mercadorias', alignment: 'center' , margin: [0,3,0,0]}, { text: `Valor Total - ${dates?.money}`, alignment: 'center' , margin: [0,3,0,0]}]
     
-    let file2_ = dates?.table.map((info, index) => {
-      console.log(index)
+    const index = dates?.table.length > 1 ? true : false
+    console.log(dates?.table.length)
+    let file2_ = dates?.table.map((info) => {
+      console.log('tiene mas de unol?', index)
       return [
-        { text: info.quantity, alignment: 'right', margin: (index >= 0) ? [0, 10, 0, 0] : [0, 15, 0, 0], border: (index > 0) ? [true, false, true, true] : [true, false, true, false] },
-        { text: info.species, alignment: 'left', margin: (index >= 0) ? [0, 10, 0, 0] : [0, 15, 0, 0], border: (index > 0) ? [true, false, true, true] : [true, false, true, false] },
-        { text: info.description_of_goods, alignment: 'left', margin: (index >= 1) ? [0, -3, 0, 0] : [0, 0, 0, 0], border: (index > 0) ? [true, false, true, true] : [true, false, true, false] },
-        { text: info.value, alignment: 'right', margin: (index >= 0) ? [0, 10, 0, 0] : [0, 15, 0, 0], border: (index > 0) ? [true, false, true, true] : [true, false, true, false] }
+        { text: info.quantity, alignment: 'right', border: (index ) ? [true, false, true, false] : [true, false, true, true] },
+        { text: info.species, alignment: 'left', border: (index ) ? [true, false, true, false] : [true, false, true, true] },
+        { text: info.description_of_goods, alignment: 'left', border: (index) ? [true, false, true, false] : [true, false, true, true] },
+        { text: info.value, alignment: 'right', border: (index) ? [true, false, true, false] : [true, false, true, true] }
       ]
     })
 

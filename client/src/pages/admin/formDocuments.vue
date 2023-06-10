@@ -33,7 +33,7 @@
                 <q-input mask="###,###.##" reverse-fill-mask outlined v-model="state.form.table[index].quantity" label="Cantidad"/>
               </div>
               <div style="padding-right: 8px; padding-top: 2em;" class="col-xs-11 col-sm-4 col-md-2 col-xl-2">
-                <q-input outlined v-model="state.form.table[index].species" label="Especie" />
+                <q-input outlined v-model="state.form.table[index].species" label="Especie" mask="AAAAA"/>
               </div>
               <div style="padding-right: 8px; padding-top: 2em;" class="col-xs-11 col-sm-4 col-md-2 col-xl-2">
                 <q-input mask="###.###.###,##" reverse-fill-mask outlined v-model="state.form.table[index].value" label="Valor" />

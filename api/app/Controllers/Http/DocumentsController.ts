@@ -32,7 +32,7 @@ export default class DocumentsController {
       response.unprocessableEntity(validation.messages())
     } else {
       const body = request.all()
-      await this.caracterCount(body.table)
+      // await this.caracterCount(body.table)
       if (body.id) {
         delete body.json
         body.table = JSON.stringify(body.table)
