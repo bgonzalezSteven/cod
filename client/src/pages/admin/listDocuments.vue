@@ -41,12 +41,8 @@
                       Editar
                     </q-tooltip>
                   </q-btn>
-<<<<<<< HEAD
-                  <q-btn @click="print(props.row.id)" rounded icon="print" size="sm" class="q-mr-md bg-accest">
-=======
                   <q-btn @click="print(props.row.id)" rounded icon="print" size="sm"
                     class="q-mr-md bg-accest">
->>>>>>> 812251c889d9f0bb1abe2f65ff39a161cec2403f
                     <q-tooltip class="bg-secondary" :offset="[10, 10]">
                       Imprimir
                     </q-tooltip>
@@ -160,9 +156,5 @@ export default {
 
 .q-table--bordered
   border-radius: 1em
-<<<<<<< HEAD
-  
-=======
->>>>>>> 812251c889d9f0bb1abe2f65ff39a161cec2403f
 
 </style>

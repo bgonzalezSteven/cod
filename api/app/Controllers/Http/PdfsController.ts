@@ -32,7 +32,7 @@ export default class PdfsController {
     let file1_ = [{ text: 'Quantidade', alignment: 'center' , margin: [0,3,0,0]}, { text: 'Espécie', alignment: 'center' , margin: [0,3,0,0]}, { text: 'Denominação das Mercadorias', alignment: 'center' , margin: [0,3,0,0]}, { text: `Valor Total - ${dates?.money}`, alignment: 'center' , margin: [0,3,0,0]}]
     
     const index = dates?.table.length > 1 ? true : false
-    console.log(dates?.table.length)
+    
     let file2_ = dates?.table.map((info) => {
       console.log('tiene mas de unol?', index)
       return [
