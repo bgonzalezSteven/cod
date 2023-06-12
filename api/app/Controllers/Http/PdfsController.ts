@@ -19,6 +19,7 @@ export default class PdfsController {
 
   public async generate ({ params /*, ,response, request*/}) {
     const dates = await Document.findBy('id', params.id)
+<<<<<<< HEAD
     // Filas de la primera table
     let file1 = [{text: 'Exportador', border: [true, true, false, false]},{text: '', border: [false, true, false, false]}, {text: 'Importador', border: [true, true, true, false]}]
     let file2 = [{text: `${dates?.export}`, border: [true, false, false, false] }, {text: '', border: [false, false, false, false] },{text: `${dates?.import}`, border: [true, false, true, false] }]
@@ -42,6 +43,14 @@ export default class PdfsController {
         { text: info.value, alignment: 'right', border: (index) ? [true, false, true, false] : [true, false, true, true] }
       ]
     })
+=======
+    
+    let file1 = []
+    let file2 = []
+    file1.push({text: 'Exportador', border: [true, true, false, false]},{text: '', border: [false, true, false, false]}, {text: 'Importador', border: [true, true, true, false]})
+    file2.push({text: `${dates?.export}`, border: [true, false, false, true]}, {text: '', border: [false, false, false, true]},{text: `${dates.import}`, border: [true, false, true, true]})
+
+>>>>>>> 812251c889d9f0bb1abe2f65ff39a161cec2403f
 
     const docDefinition = {
       pageSize: 'A4',
@@ -106,11 +115,16 @@ export default class PdfsController {
           style: 'tables',
           margin: [-3,5,0,0],
           table: {
+<<<<<<< HEAD
             widths: [248, 2, '*'],
+=======
+            widths: ['*', 10, '*'],
+>>>>>>> 812251c889d9f0bb1abe2f65ff39a161cec2403f
             heights: [2.5,2.5],
             body: [
               file1,
               file2,
+<<<<<<< HEAD
               file3EspacioVacio,
               file4,
               file5,
@@ -137,6 +151,11 @@ export default class PdfsController {
             heights: [3,3, 3, 3],
             body: file2_
           }
+=======
+              
+            ]
+			    }
+>>>>>>> 812251c889d9f0bb1abe2f65ff39a161cec2403f
         }
       ],
       styles: {

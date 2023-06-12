@@ -6,6 +6,7 @@
         <div class="q-pa-sm">
           <div class="row items-center justify-center">
             <div style="padding-right: 8px;" class="col-xs-11 col-sm-6 col-md-4 col-xl-4">
+<<<<<<< HEAD
               <q-input type="textarea" outlined v-model="state.form.export" label="Exportador"
                 :error="v$.form.export.$error" error-message="Campo necesario" />
             </div>
@@ -16,6 +17,15 @@
             <div style="padding-right: 8px;" class="col-xs-11 col-sm-6 col-md-4 col-xl-4">
               <q-input type="textarea" outlined v-model="state.form.consignee" label="Consignatario"
                 :error="v$.form.consignee.$error" error-message="Campo necesario" />
+=======
+              <q-input type="textarea" outlined v-model="state.form.export" label="Exportador" :error="v$.form.export.$error" error-message="Campo necesario"/>
+            </div>
+            <div style="padding-right: 8px;" class="col-xs-11 col-sm-6 col-md-4 col-xl-4">
+              <q-input type="textarea" outlined v-model="state.form.import" label="Importador" :error="v$.form.import.$error" error-message="Campo necesario" />
+            </div>
+            <div style="padding-right: 8px;" class="col-xs-11 col-sm-6 col-md-4 col-xl-4">
+              <q-input type="textarea" outlined v-model="state.form.consignee" label="Consignatario" :error="v$.form.consignee.$error" error-message="Campo necesario" />
+>>>>>>> 812251c889d9f0bb1abe2f65ff39a161cec2403f
             </div>
           </div>
         </div>
