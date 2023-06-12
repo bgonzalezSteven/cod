@@ -45,6 +45,7 @@ Route.group(() => {
 
   // Pdf Controller
   Route.post('generate/:id', 'PdfsController.generate')
+  Route.get('GetPDF/:dir', 'PdfsController.getFileByFileName')
 
   // Pdf Controller
 

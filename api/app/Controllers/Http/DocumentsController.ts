@@ -53,7 +53,6 @@ export default class DocumentsController {
         element.species = `\n${element.species}`
       }
     })
-    console.log(repeat)
   }
 
   public async show({ response }) {

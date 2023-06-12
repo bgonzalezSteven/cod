@@ -12,12 +12,13 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 // const fs = import("fs")
 
 export default class PdfsController {
-  public async getFileByFileName ({ /*params, response */}) {/*
-    let dir = params.dir
-    response.download(Helpers.appRoot(`storage/${dir}`))*/
+  public async getFileByFileName ({ params, response }) {
+    let filePath = Application.tmpPath(`storage/${params.dir}`)
+    console.log(filePath)
+    response.download(filePath, true)
   }
 
-  public async generate ({ params /*, ,response, request*/}) {
+  public async generate ({ params,response/*, request*/}) {
     const dates = await Document.findBy('id', params.id)
     // Filas de la primera table
     let file1 = [{text: 'Exportador', border: [true, true, false, false]},{text: '', border: [false, true, false, false]}, {text: 'Importador', border: [true, true, true, false]}]
@@ -147,7 +148,7 @@ export default class PdfsController {
     };
 
     const pdfDocGenerator = pdfMake.createPdf(docDefinition)
-    const dir = `${Application.appRoot}/storage`
+    const dir = `${Application.appRoot}/tmp/storage`
     const fileName = `${dates?.correlativeNumber.replace('/', '-')}.pdf`
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir)
@@ -157,9 +158,10 @@ export default class PdfsController {
         if (err) {
           console.error('Error al escribir archivo', err);
         } else {
-          console.log('El archivo example.pdf se ha creado correctamente.');
+          console.log(`Creado mi rey`,);
         }
       })
     })
+    response.send(`${fileName}`)
   }
 }

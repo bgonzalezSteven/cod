@@ -61,6 +61,7 @@
   </q-page>
 </template>
 <script>
+import apiUrl from '../../env'
 import { onBeforeMount, reactive, onMounted, ref } from 'vue';
 import { useQuasar } from 'quasar';
 import { api } from 'src/boot/axios';
@@ -115,6 +116,14 @@ export default {
     function print(id) {
       $q.loading.show()
       api.post(`generate/${id}`).then(res => {
+        const url = `${apiUrl.apiUrl}GetPDF/${res}`
+        const link = document.createElement('a')
+        link.href = url
+        link.target = 'blank'
+        link.setAttribute('download', res)
+        document.body.appendChild(link)
+        link.click()
+
         $q.loading.hide()
       })
     }
