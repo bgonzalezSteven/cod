@@ -35,7 +35,6 @@ export default class PdfsController {
     const index = dates?.table.length > 1 ? true : false
     
     let file2_ = dates?.table.map((info) => {
-      console.log('tiene mas de unol?', index)
       return [
         { text: info.quantity, alignment: 'right', border: (index ) ? [true, false, true, false] : [true, false, true, true] },
         { text: info.species, alignment: 'left', border: (index ) ? [true, false, true, false] : [true, false, true, true] },
@@ -43,7 +42,14 @@ export default class PdfsController {
         { text: info.value, alignment: 'right', border: (index) ? [true, false, true, false] : [true, false, true, true] }
       ]
     })
+    
+    // filas de la ultima table 
 
+    const finalTable = [{ text: `\nMarcas e Números\n\n${dates?.marksAndNumbers}\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '\nC E R T I F I C A Ç Ã O\n\n\nA Federação das Indústrias do Estado de Roraima, com base nos documentos autênticos apresentados pelo exportador, CERTIFICA que o(s) produtos(s) acima, correspondente(s) à Fatura Comercial nº 000.066/2023,  possui(em) condições legais para livre venda neste país.\n\nBOA VISTA,', colSpan: 2, rowSpan: 3, margin: [4, 0, 0, 0] }, { text: '' }]
+
+    const finalTable2 = [{ text: `\nMeio de Transporte\n\n${dates?.transport}\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: ''}, { text: '' }]
+
+    const fileWhite = [{text: ''},{text: ''},{text: ''},{text: '', border: [true, false, true, true]}]
     const docDefinition = {
       pageSize: 'A4',
       pageMargins: [40, 90, 21, 0],
@@ -138,7 +144,21 @@ export default class PdfsController {
             heights: [3,3, 3, 3],
             body: file2_
           }
-        }
+        },
+        {
+          style: 'tables',
+          margin: [-3, 199, 0, 0],
+          table: {
+            widths: ['*', '*', '*', '*'],
+            heights: [10],
+            body: [
+              finalTable,
+              fileWhite,
+              finalTable2,
+              fileWhite
+            ]
+          }
+        },
       ],
       styles: {
         tables: {
@@ -146,7 +166,7 @@ export default class PdfsController {
         }
       }
     };
-
+    // documento impreso y mostrado en oantalla, acaba el pdf y acaba la pantalla de mostrarlo
     const pdfDocGenerator = pdfMake.createPdf(docDefinition)
     const dir = `${Application.appRoot}/tmp/storage`
     const fileName = `${dates?.correlativeNumber.replace('/', '-')}.pdf`
