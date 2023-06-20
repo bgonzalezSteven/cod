@@ -45,11 +45,14 @@ export default class PdfsController {
     
     // filas de la ultima table 
 
-    const finalTable = [{ text: `\nMarcas e Números\n\n${dates?.marksAndNumbers}\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '\nC E R T I F I C A Ç Ã O\n\n\nA Federação das Indústrias do Estado de Roraima, com base nos documentos autênticos apresentados pelo exportador, CERTIFICA que o(s) produtos(s) acima, correspondente(s) à Fatura Comercial nº 000.066/2023,  possui(em) condições legais para livre venda neste país.\n\nBOA VISTA,', colSpan: 2, rowSpan: 3, margin: [4, 0, 0, 0] }, { text: '' }]
+    const finalTable = [{ text: `\nMarcas e Números\n\n${dates?.marksAndNumbers}\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '\nC E R T I F I C A Ç Ã O\n\n\nA Federação das Indústrias do Estado de Roraima, com base nos documentos autênticos apresentados pelo exportador, CERTIFICA que o(s) produtos(s) acima, correspondente(s) à Fatura Comercial nº 000.066/2023,  possui(em) condições legais para livre venda neste país.\n\nBOA VISTA,', colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0], border: [true, true, true, false] }, { text: '' }]
 
-    const finalTable2 = [{ text: `\nMeio de Transporte\n\n${dates?.transport}\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: ''}, { text: '' }]
+    const finalTable2 = [{ text: `\nMeio de Transporte\n\n${dates?.transport}\n\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '' }, { text: '' }]
+    const finalTable3 = [{ text: `\Peso Bruto\n\n${dates?.grossWeight}\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '' }, { text: '' }]
 
-    const fileWhite = [{text: ''},{text: ''},{text: ''},{text: '', border: [true, false, true, true]}]
+    const fileWhite = [{ text: '' }, { text: '' }, { text: '' }, { text: ''}]
+    // Papa acmomoda el diseño de la tabla
+
     const docDefinition = {
       pageSize: 'A4',
       pageMargins: [40, 90, 21, 0],
@@ -155,7 +158,9 @@ export default class PdfsController {
               finalTable,
               fileWhite,
               finalTable2,
-              fileWhite
+              fileWhite,
+              finalTable3,
+              fileWhite,
             ]
           }
         },
