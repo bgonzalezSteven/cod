@@ -3050,6 +3050,11 @@
   "resolved" "https://registry.npmjs.org/joycon/-/joycon-3.1.1.tgz"
   "version" "3.1.1"
 
+"js-base64@^3.7.5":
+  "integrity" "sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA=="
+  "resolved" "https://registry.npmjs.org/js-base64/-/js-base64-3.7.5.tgz"
+  "version" "3.7.5"
+
 "js-tokens@^3.0.2":
   "integrity" "sha512-RjTcuD4xjtthQkaWH7dFlH85L+QaVtSoOyGdZ3g6HFhS9dFNDfLyqgm2NFe2X6cQpeFmt0452FJjFG5UameExg=="
   "resolved" "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.2.tgz"
@@ -3496,6 +3501,11 @@
   dependencies:
     "for-in" "^1.0.2"
     "is-extendable" "^1.0.1"
+
+"moment@^2.29.4":
+  "integrity" "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
+  "version" "2.29.4"
 
 "mrm-core@7.1.13":
   "integrity" "sha512-+AlsNuryLYw9HWqf+HBcNXULiwBEfcmb2VDccvYyg71x25bC8nJOn0YJA13x1PUUEF0aEbc5RTfqa6weMtRHaw=="

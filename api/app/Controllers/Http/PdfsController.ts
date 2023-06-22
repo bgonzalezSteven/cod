@@ -3,9 +3,16 @@ import * as fs from 'fs';
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 import Document from "App/Models/Document"
+import moment from 'moment';
+const Base64 = require('js-base64').Base64;
+const firma = fs.readFileSync('logo.png');
+const base64Image = Base64.encode(firma);
+
+
 
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs
+
 // const pdfmake = import('pdfmake')
 // const moment = import("moment")
 // const Helpers = import("Helpers")
@@ -45,12 +52,12 @@ export default class PdfsController {
     
     // filas de la ultima table 
 
-    const finalTable = [{ text: `\nMarcas e Números\n\n${dates?.marksAndNumbers}\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '\nC E R T I F I C A Ç Ã O\n\n\nA Federação das Indústrias do Estado de Roraima, com base nos documentos autênticos apresentados pelo exportador, CERTIFICA que o(s) produtos(s) acima, correspondente(s) à Fatura Comercial nº 000.066/2023,  possui(em) condições legais para livre venda neste país.\n\nBOA VISTA,', colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0], border: [true, true, true, false] }, { text: '' }]
+    const finalTable = [{ text: `\nMarcas e Números\n\n${dates?.marksAndNumbers}\n\n\n\n\n`, colSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '\nC E R T I F I C A Ç Ã O\n\n\nA Federação das Indústrias do Estado de Roraima, com base nos documentos autênticos apresentados pelo exportador, CERTIFICA que o(s) produtos(s) acima, correspondente(s) à Fatura Comercial nº 000.066/2023,  possui(em) condições legais para livre venda neste país.\n\n\nBOA VISTA,', colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0], border: [true, true, true, false] }, { text: '' }]
 
-    const finalTable2 = [{ text: `\nMeio de Transporte\n\n${dates?.transport}\n\n\n\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '' }, { text: '' }]
-    const finalTable3 = [{ text: `\Peso Bruto\n\n${dates?.grossWeight}\n\n\n`, colSpan: 2, rowSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '' }, { text: '' }]
+    const finalTable2 = [{ text: `\nMeio de Transporte\n\n${dates?.transport}\n\n\n\n\n`, colSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '' }, { text: '' }]
+    const finalTable3 = [{ text: `\nPeso Bruto\n\n${dates?.grossWeight}\n\n\n`, colSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { image: `data:image/png;base64,${base64Image}`, width: 87,height: 57, rowSpan: 2, margin: [35, 7, 0, 0], border: [true, false, false, true] }, { qr: `http://cod.cni.com.br/novocod/VerificaoCertificados/Pesquisar?NumeroCertificado=${dates?.correlativeNumber}`, fit: '75',  margin: [33, 10, 0, 0], border: [false, false, true, true], rowSpan: 2 }]
+    const finalTable4 = [{ text: `\nPeso Líquido\n\n${dates?.liquidWeight}\n\n\n`, colSpan: 2, margin: [4, 0, 0, 0] }, { text: '' }, { text: '' }, { text: '' }]
 
-    const fileWhite = [{ text: '' }, { text: '' }, { text: '' }, { text: ''}]
     // Papa acmomoda el diseño de la tabla
 
     const docDefinition = {
@@ -156,13 +163,28 @@ export default class PdfsController {
             heights: [10],
             body: [
               finalTable,
-              fileWhite,
               finalTable2,
-              fileWhite,
               finalTable3,
-              fileWhite,
+              finalTable4,
             ]
           }
+        },
+        {
+          margin: [0, -30, 128, 0],
+          alignment: 'right',
+          text: [{
+            text: '(data, assinatura e carimbo da Federação)',
+            fontSize: 6
+          }]
+        },
+        {
+          margin: [0, 30, 170, 0],
+          alignment: 'right',
+          bold: true,
+          text: [{
+            text: `Ás: __:__HS\n${moment().format('DD MMM YYYY')}`,
+            fontSize: 6,
+          }]
         },
       ],
       styles: {
