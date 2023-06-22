@@ -46,7 +46,7 @@ export default class PdfsController {
         { text: info.quantity, alignment: 'right', border: (index ) ? [true, false, true, false] : [true, false, true, true] },
         { text: info.species, alignment: 'left', border: (index ) ? [true, false, true, false] : [true, false, true, true] },
         { text: info.description_of_goods, alignment: 'left', border: (index) ? [true, false, true, false] : [true, false, true, true] },
-        { text: info.value, alignment: 'right', border: (index) ? [true, false, true, false] : [true, false, true, true] }
+        { text: info.value, alignment: 'right', border: (index) ? [true, false, true, false] : [true, false, true, true] } //COMent
       ]
     })
     
