@@ -1,9 +1,6 @@
 import { DateTime } from 'luxon'
-<<<<<<< HEAD
 import { BaseModel, afterCreate, afterFind, beforeFind, beforeSave, beforeUpdate, column } from '@ioc:Adonis/Lucid/Orm'
-=======
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
->>>>>>> 812251c889d9f0bb1abe2f65ff39a161cec2403f
 //fkjdbsbdf//
 export default class Document extends BaseModel {
   @column({ isPrimary: true })
