@@ -44,12 +44,12 @@ export default class Document extends BaseModel {
 
   @afterFind()
   public static async hideTable(table: Document) {
-    return table.$attributes.table = JSON.parse(table.table)
+    return table.table = JSON.parse(table.table)
   }
 
   @beforeSave()
   public static async HashTable(table: Document) {
-    return table.$attributes.table = JSON.stringify(table.table)
+    return table.table = JSON.stringify(table.table)
   }
 
 }

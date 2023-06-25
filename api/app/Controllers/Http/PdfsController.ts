@@ -39,8 +39,8 @@ export default class PdfsController {
 
     let file1_ = [{ text: 'Quantidade', alignment: 'center' , margin: [0,3,0,0]}, { text: 'Espécie', alignment: 'center' , margin: [0,3,0,0]}, { text: 'Denominação das Mercadorias', alignment: 'center' , margin: [0,3,0,0]}, { text: `Valor Total - ${dates?.money}`, alignment: 'center' , margin: [0,3,0,0]}]
     
-    const index = dates?.table.length > 1 ? true : false
-    
+    const index: boolean = dates?.table.length > 1 ? true : false;
+   
     let file2_ = dates?.table.map((info) => {
       return [
         { text: info.quantity, alignment: 'right', border: (index ) ? [true, false, true, false] : [true, false, true, true] },

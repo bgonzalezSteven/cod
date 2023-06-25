@@ -28,12 +28,12 @@ Route.get('/', async () => {
 // Rutas
 Route.group(() => {
   Route.post('login', 'LoginController.index')
+  Route.post('sesionClose', 'LoginController.closeSession')
 }).prefix('/api')
 
 // Rutas
 Route.group(() => {
   Route.get('getInfo', 'LoginController.show')
-  Route.post('sesionClose', 'LoginController.closeSession')
 
   // Documents controllers
   Route.post('documents', 'DocumentsController.store')
