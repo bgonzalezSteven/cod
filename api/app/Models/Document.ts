@@ -6,7 +6,7 @@ export default class Document extends BaseModel {
   @column({ isPrimary: true })
   public id: number
     
-  @column({ serializeAs: 'json' })
+  @column()
     public table: object
   
   @column()

@@ -21,7 +21,6 @@ export default class DocumentsController {
   public async index({ params, response }) {
     const dates = await Document.findBy('id', params.id)
     dates.table = JSON.parse(dates.table)
-    console.log(dates)
     response.send(dates)
   }
 
