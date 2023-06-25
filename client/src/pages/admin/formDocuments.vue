@@ -138,7 +138,6 @@ export default {
         $q.loading.show()
         api.get(`documents/${route.params.id}`).then(res => {
           state.form = (res)
-          state.form.table = res.json
           $q.loading.hide()
         })
       }
