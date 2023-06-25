@@ -42,14 +42,6 @@ export default class Document extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @afterFind()
-  public static async hideTable(table: Document) {
-    return table.table = JSON.parse(table.table)
-  }
 
-  @beforeSave()
-  public static async HashTable(table: Document) {
-    return table.table = JSON.stringify(table.table)
-  }
 
 }

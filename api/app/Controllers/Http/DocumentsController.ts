@@ -19,7 +19,10 @@ export default class DocumentsController {
   
   
   public async index({ params, response }) {
-    response.send(await Document.findBy('id', params.id))
+    const dates = await Document.findBy('id', params.id)
+    dates.table = JSON.parse(dates.table)
+    console.log(dates)
+    response.send(dates)
   }
 
   public async create({}) {
@@ -32,7 +35,7 @@ export default class DocumentsController {
       response.unprocessableEntity(validation.messages())
     } else {
       const body = request.all()
-      // await this.caracterCount(body.table)
+      body.table = JSON.stringify(body.table)
       if (body.id) {
         delete body.json
         body.table = JSON.stringify(body.table)
@@ -42,17 +45,6 @@ export default class DocumentsController {
       }
     }
 
-  }
-  public async caracterCount(text) {
-    let repeat = 0
-    text.forEach(element => {
-      repeat = element.description_of_goods.split('\n').length - 1
-      for (let i = 0; i < repeat; i++) {
-        element.value = `\n${element.value}`
-        element.quantity = `\n${element.quantity}`
-        element.species = `\n${element.species}`
-      }
-    })
   }
 
   public async show({ response }) {

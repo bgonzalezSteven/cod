@@ -27,6 +27,7 @@ export default class PdfsController {
 
   public async generate ({ params,response/*, request*/}) {
     const dates = await Document.findBy('id', params.id)
+    dates.table = JSON.parse(dates.table)
     // Filas de la primera table
     let file1 = [{text: 'Exportador', border: [true, true, false, false]},{text: '', border: [false, true, false, false]}, {text: 'Importador', border: [true, true, true, false]}]
     let file2 = [{text: `${dates?.export}`, border: [true, false, false, false] }, {text: '', border: [false, false, false, false] },{text: `${dates?.import}`, border: [true, false, true, false] }]
