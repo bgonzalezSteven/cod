@@ -21,7 +21,8 @@ export const UseLoginInfo = defineStore("infoLogin", {
   },
   actions: {
     fetchAccessToken() {
-      const info = JSON.parse(localStorage.getItem("sessionInfo"));
+      const info = JSON.parse(localStorage.getItem("sessionInfo") ? localStorage.getItem('sesionInfo') : null);
+      console.log(info)
       if (info) {
         this.sessionInfo = info;
         console.log("Token guardao");

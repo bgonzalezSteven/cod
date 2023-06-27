@@ -25,18 +25,18 @@ export default {
       email: '',
       password: ''
     })
-    onMounted(() => {
-      login.logout()
-    })
 
     function save() {
       if (form.email && form.password) {
         $q.loading.show()
         api.post('login', form).then(res => {
-          login.login(res)
-          router.push('/menu')
           $q.loading.hide()
+          if (res.status !== 401) {
+            login.login(res)
+            router.push('/menu')
+          }
         }).catch(res => {
+          $q.loading.hide()
           console.log(res, 'ehjbdhje')
         })
       } else {

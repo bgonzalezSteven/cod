@@ -104,13 +104,13 @@ export default {
           {
             name: 'Listado',
             url: '/list',
-            permission: 'admin.list',
+            permission: 'configuration.list',
             icon: 'format_list_bulleted'
           },
           {
             name: 'Formulario',
             url: '/form',
-            permission: 'admin.form',
+            permission: 'configuration.form',
             icon: 'assignment'
           },
         ]

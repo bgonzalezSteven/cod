@@ -50,7 +50,6 @@ export default class DocumentsController {
   public async show({ response }) {
     console.log('datos')
     response.send((await Document.all()))
-
   }
 
   public async edit({}) {

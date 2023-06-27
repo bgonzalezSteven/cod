@@ -38,8 +38,8 @@ Route.group(() => {
   // Documents controllers
   Route.post('documents', 'DocumentsController.store')
   Route.get('documents', 'DocumentsController.show')
-  Route.get('documents/:id', 'DocumentsController.index')
-  Route.delete('documents/:id', 'DocumentsController.destroy')
+  Route.get('documents/:id', 'DocumentController.index')
+  Route.delete('documents/:id', 'DocumentController.destroy')
   // Documents Controller
 
 
