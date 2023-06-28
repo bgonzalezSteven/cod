@@ -29,19 +29,19 @@
             <template v-slot:body="props">
               <q-tr :props="props">
                 <q-td auto-width>
-                  <q-btn @click="deleted(props.row.id)" rounded icon="delete" size="sm"
+                  <q-btn @click="deleted(props.row._id)" rounded icon="delete" size="sm"
                     class="q-mr-md bg-negative text-white">
                     <q-tooltip class="bg-negative" :offset="[10, 10]">
                       Eliminar
                     </q-tooltip>
                   </q-btn>
-                  <q-btn @click="edit(props.row.id)" rounded icon="edit" size="sm"
+                  <q-btn @click="edit(props.row._id)" rounded icon="edit" size="sm"
                     class="q-mr-md bg-secondary text-white">
                     <q-tooltip class="bg-secondary" :offset="[10, 10]">
                       Editar
                     </q-tooltip>
                   </q-btn>
-                  <q-btn @click="print(props.row.id)" rounded icon="print" size="sm"
+                  <q-btn @click="print(props.row._id)" rounded icon="print" size="sm"
                     class="q-mr-md bg-accest">
                     <q-tooltip class="bg-secondary" :offset="[10, 10]">
                       Imprimir

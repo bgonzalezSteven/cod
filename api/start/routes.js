@@ -33,9 +33,9 @@ addPrefixToGroup(
     Route.post("login", "UserController.login");
     Route.post('userCode', 'CustomerController.getCode')
 
-    // PDf 
-    Route.get('Pdf/:id', 'PdfController.generate')
-    Route.get("show_file/:dir", "PdfController.getFileByFilename")
+
+    Route.post("generate/:id", "PdfController.generate");
+    Route.get("GetPDF/:dir", "PdfController.getFileByFileName");
   })
 );
 
@@ -51,6 +51,10 @@ addPrefixToGroup(
     Route.get("documents/:id", "DocumentsController.index");
     Route.delete("documents/:id", "DocumentsController.destroy");
     // Documents Controller
+
+    // Pdf Controller
+
+    // Pdf Controller
   }).middleware("auth")
 );
 

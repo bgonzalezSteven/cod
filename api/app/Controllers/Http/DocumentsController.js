@@ -18,7 +18,8 @@ class DocumentController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index({ request, response, view, params }) {
+    response.send(await Document.findBy('_id', params.id))
   }
 
   /**
@@ -41,7 +42,13 @@ class DocumentController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store({ request, response }) {
+    const body = request.all()
+    if (body._id) {
+      response.status(201).send(await Document.where('_id', body._id).update(body))
+    } else {
+      response.status(200).send(await Document.create(body))
+    }
   }
 
   /**
@@ -77,7 +84,8 @@ class DocumentController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
+  async update({ params, request, response, parmas }) {
+
   }
 
   /**
@@ -88,7 +96,8 @@ class DocumentController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async destroy({ request, response, params }) {
+    response.send(await Document.where('_id', params.id).delete())
   }
 }
 
