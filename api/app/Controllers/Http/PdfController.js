@@ -189,7 +189,7 @@ class PdfController {
         normal: "resources/fonts/Arial.ttf",
         italics: "resources/fonts/Arial-Italic.ttf",
         bolditalics: "resources/fonts/Arial-boldI.TTF",
-        bold: "resources/fonts/Arial-bold.ttf",
+        bold: "resources/fonts/Arial-bold.TTF",
       },
     };
     var printer = new PdfPrinter(fonts);
