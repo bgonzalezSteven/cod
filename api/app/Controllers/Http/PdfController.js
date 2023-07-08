@@ -188,7 +188,7 @@ class PdfController {
       Arial: {
         normal: "resources/fonts/Arial.ttf",
         italics: "resources/fonts/Arial-Italic.ttf",
-        bolditalics: "resources/fonts/Arial.ttf",
+        bolditalics: "resources/fonts/Arial-boldI.TTF",
         bold: "resources/fonts/Arial-bold.ttf",
       },
     };
