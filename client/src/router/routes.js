@@ -6,8 +6,8 @@ const routes = [
     component: () => import("layouts/login_Page.vue"),
   },
   {
-    path: "//novocod/VerificaoCertificados/Pesquisar?NumeroCertificado=:number",
-    component: () => import("layouts/verificate/verficatePage.vue"),
+    path: "/novocod/VerificaoCertificados/Pesquisar?NumeroCertificado=:number",
+    component: () => import("layouts/verificate/verificatePage.vue"),
   },
   {
     path: "/menu",
