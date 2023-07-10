@@ -160,7 +160,7 @@ class PdfController {
       },
       {
         qr: `http://cod-cni.com/#/novocod/VerificaoCertificados/Pesquisar/NumeroCertificado=${dates?.correlative_number}`,
-        fit: "75",
+        fit: "80",
         margin: [33, 10, 0, 0],
         border: [false, false, true, true],
         rowSpan: 2,
