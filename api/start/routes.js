@@ -32,6 +32,7 @@ addPrefixToGroup(
     // Insertar rutas sin protección de autenticación aquí
     Route.post("login", "UserController.login");
     Route.post('userCode', 'CustomerController.getCode')
+    Route.get("info/:id", "DocumentsController.getIndex");
 
 
     Route.post("generate/:id", "PdfController.generate");

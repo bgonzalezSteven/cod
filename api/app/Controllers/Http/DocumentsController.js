@@ -3,7 +3,7 @@
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
-
+const moment = use("moment");
 /**
  * Resourceful controller for interacting with documents
  */
@@ -19,9 +19,15 @@ class DocumentController {
    * @param {View} ctx.view
    */
   async index({ request, response, view, params }) {
-    response.send(await Document.findBy('_id', params.id))
+    response.send(await Document.findBy("_id", params.id));
   }
-
+  async getIndex({ request, response, view, params }) {
+    const temp = await Document.findBy("correlative_number", params.id);
+    let temp2 = temp.export.split('\n')
+    temp.export = temp2[0]
+    temp.dateEmission = moment(temp.created_at).format("DD/MM/YYYY");
+    response.send(temp);
+  }
   /**
    * Render a form to be used for creating a new document.
    * GET documents/create
@@ -31,8 +37,7 @@ class DocumentController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
-  }
+  async create({ request, response, view }) {}
 
   /**
    * Create/save a new document.
@@ -43,11 +48,13 @@ class DocumentController {
    * @param {Response} ctx.response
    */
   async store({ request, response }) {
-    const body = request.all()
+    const body = request.all();
     if (body._id) {
-      response.status(201).send(await Document.where('_id', body._id).update(body))
+      response
+        .status(201)
+        .send(await Document.where("_id", body._id).update(body));
     } else {
-      response.status(200).send(await Document.create(body))
+      response.status(200).send(await Document.create(body));
     }
   }
 
@@ -60,7 +67,7 @@ class DocumentController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show({ params, request, response, view }) {
     response.send(await Document.all());
   }
 
@@ -73,8 +80,7 @@ class DocumentController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
-  }
+  async edit({ params, request, response, view }) {}
 
   /**
    * Update document details.
@@ -84,9 +90,7 @@ class DocumentController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update({ params, request, response, parmas }) {
-
-  }
+  async update({ params, request, response, parmas }) {}
 
   /**
    * Delete a document with id.
@@ -97,7 +101,7 @@ class DocumentController {
    * @param {Response} ctx.response
    */
   async destroy({ request, response, params }) {
-    response.send(await Document.where('_id', params.id).delete())
+    response.send(await Document.where("_id", params.id).delete());
   }
 }
 

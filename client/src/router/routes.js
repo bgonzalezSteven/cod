@@ -1,13 +1,9 @@
-import MenuLayout from "src/layouts/layout_menu.vue";
+import verificatePageVue from "layouts/verificatePage.vue";
 
 const routes = [
   {
     path: "/",
     component: () => import("layouts/login_Page.vue"),
-  },
-  {
-    path: "/novocod/VerificaoCertificados/Pesquisar?NumeroCertificado=:number",
-    component: () => import("layouts/verificate/verificatePage.vue"),
   },
   {
     path: "/menu",
@@ -27,6 +23,10 @@ const routes = [
         component: () => import("pages/admin/formDocuments.vue"),
       },
     ],
+  },
+  {
+    path: "/novocod/VerificaoCertificados/Pesquisar/NumeroCertificado=:number",
+    component: verificatePageVue,
   },
 
   // Always leave this as last one,

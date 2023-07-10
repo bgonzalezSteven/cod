@@ -79,6 +79,15 @@
                 <q-input outlined v-model="state.form.correlative_number" label="Número"
                   :error="v$.form.correlative_number.$error" error-message="Campo necesario" />
               </div>
+              <div style="padding-right: 8px; margin-top: -20px;" class="col-xs-8 col-sm-4 col-md-2 col-xl-2">
+                <q-input outlined v-model="state.form.commercialInvoice" label="Factura comercial"/>
+              </div>
+              <div style="padding-right: 8px; margin-top: -20px;" class="col-xs-8 col-sm-4 col-md-2 col-xl-2">
+                <q-input outlined v-model="state.form.country" label="Pais de destino"/>
+              </div>
+              <div style="padding-right: 8px; margin-top: -20px;" class="col-xs-10 col-sm-6 col-md-4 col-xl-4">
+                <q-input type="textarea" outlined v-model="state.form.description" label="Descriccion de la mercancia"/>
+              </div>
             </div>
           </div>
         </div>
