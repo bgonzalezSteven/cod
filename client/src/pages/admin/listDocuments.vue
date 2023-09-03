@@ -116,7 +116,9 @@ export default {
     async function print(id) {
       $q.loading.show()
       await api.post(`generate/${id}`).then(res => {
-        setTimeout(printfPDF(res), 4000)
+        setTimeout(() => {
+          printfPDF(res)
+        }, 3000)
         $q.loading.hide()
       })
     }

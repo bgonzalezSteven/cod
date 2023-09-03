@@ -15,7 +15,7 @@ const firma = fs.readFileSync("logo.png");
 
 class PdfController {
   async getFileByFileName({ params, response, request }) {
-    let dir = params.dir;
+    let dir = await params.dir;
     response.download(Helpers.appRoot(`storage/file/${dir}`));
   }
   /**
