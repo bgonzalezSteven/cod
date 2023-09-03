@@ -330,7 +330,6 @@ class PdfController {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
-    console.log(`${dir}/${filename}`);
     pdfDoc.pipe(fs.createWriteStream(`${dir}/${filename}`));
     pdfDoc.end();
     response.send(`${filename}`);
