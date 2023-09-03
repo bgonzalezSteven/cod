@@ -9,6 +9,7 @@ const PdfPrinter = use("pdfmake")
 const moment = use("moment")
 const Helpers = use("Helpers")
 const fs = use("fs")
+const currency = require("currency.js");
 
 const firma = fs.readFileSync("logo.png");
 // const base64Image = Base64.encode(firma);
@@ -29,7 +30,6 @@ class PdfController {
    */
   async generate({ request, response, params, view }) {
     const dates = await Document.findBy("_id", params.id);
-    console.log(dates)
     // Filas de la primera table
     let file1 = [
       { text: "Exportador", border: [true, true, false, false] },
@@ -76,42 +76,87 @@ class PdfController {
         margin: [0, 3, 0, 0],
       },
     ];
-
-    const index = dates?.table.length > 1 ? true : false;
-
-    let file2_ = dates?.table.map((info) => {
-      return [
-        {
-          text: info.quantity,
-          alignment: "right",
-          border: index
-            ? [true, false, true, false]
-            : [true, false, true, true],
-        },
-        {
-          text: info.species,
-          alignment: "left",
-          border: index
-            ? [true, false, true, false]
-            : [true, false, true, true],
-        },
-        {
-          text: info.description_of_goods,
-          alignment: "left",
-          border: index
-            ? [true, false, true, false]
-            : [true, false, true, true],
-        },
-        {
-          text: info.value,
-          alignment: "right",
-          border: index
-            ? [true, false, true, false]
-            : [true, false, true, true],
-        }, //COMent
-      ];
+    let total = 0
+    let currencyFormat = dates?.table.map((info) => {
+      return (total =
+        parseFloat(info.value.replace(/\./g, "").replace(",", ".")) + total); 
+    })
+    let finalVaue = total.toLocaleString("es-ES", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
 
+    let file2_ = dates?.table.map((info, index) => {
+      return [
+        {
+          text: `${dates.table[0].description_of_goods
+            .match(/\n/g)
+            .toString()
+            .replace(",", "")}${info.quantity}`,
+          alignment: "right",
+          border: [true, false, true, false],
+          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+        },
+        {
+          text: `${dates.table[0].description_of_goods
+            .match(/\n/g)
+            .toString()
+            .replace(",", "")}${info.species}`,
+          alignment: "left",
+          border: [true, false, true, false],
+          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+        },
+        {
+          text: `${info.description_of_goods}`,
+          alignment: "left",
+          border: [true, false, true, false],
+          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+        },
+        {
+          text: `${dates.table[0].description_of_goods
+            .match(/\n/g)
+            .toString()
+            .replace(",", "")}${info.value}`,
+          alignment: "right",
+          border: [true, false, true, false],
+          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+        },
+      ];
+    });
+    let temp = (file2_.length)
+    console.log(temp)
+    for (let i = file2_.length; i < 11; i++) {
+      file2_.push([
+        {
+          text: "\n\n\n",
+          border:
+            i !== 10 ? [true, false, true, false] : [true, false, true, true],
+        },
+        {
+          text: "\n\n\n",
+          border:
+            i !== 10 ? [true, false, true, false] : [true, false, true, true],
+        },
+        {
+          text: i !== temp ? "\n\n\n" : "SUB-TOTAL CPT\nTOTAL",
+          margin: [0, -4, 0, 0],
+          border:
+            i !== 10 ? [true, false, true, false] : [true, false, true, true],
+        },
+        {
+          alignment: "right",
+          margin: [0, -4, 0, 0],
+          text:
+            i !== temp
+              ? "\n\n\n"
+              : `${finalVaue.replace("€", "")}\n${finalVaue.replace("€", "")}`,
+          border:
+            i !== 10 ? [true, false, true, false] : [true, false, true, true],
+        },
+      ]);
+    }
     // filas de la ultima table
 
     const finalTable = [
@@ -284,7 +329,7 @@ class PdfController {
         },
         {
           style: "tables",
-          margin: [-3, 230, 0, 0],
+          margin: [-3, 10, 0, 0],
           table: {
             widths: ["*", "*", "*", "*"],
             heights: [10],
@@ -315,7 +360,8 @@ class PdfController {
       ],
       styles: {
         tables: {
-          fontSize: 7,
+          fontSize: 6,
+          font: 'Arial'
         },
       },
     };
