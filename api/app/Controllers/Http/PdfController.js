@@ -9,7 +9,6 @@ const PdfPrinter = use("pdfmake")
 const moment = use("moment")
 const Helpers = use("Helpers")
 const fs = use("fs")
-const currency = require("currency.js");
 
 const firma = fs.readFileSync("logo.png");
 // const base64Image = Base64.encode(firma);
