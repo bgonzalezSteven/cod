@@ -113,19 +113,21 @@ export default {
     function edit(id) {
       router.push(`/form/${id}`)
     }
-    function print(id) {
+    async function print(id) {
       $q.loading.show()
-      api.post(`generate/${id}`).then(res => {
-        const url = `${apiUrl.apiUrl}GetPDF/${res}`
-        const link = document.createElement('a')
-        link.href = url
-        link.target = 'blank'
-        link.setAttribute('download', res)
-        document.body.appendChild(link)
-        link.click()
-
+      await api.post(`generate/${id}`).then(res => {
+        setTimeout(printfPDF(res), 300)
         $q.loading.hide()
       })
+    }
+    async function printfPDF(res) {
+      const url = `${apiUrl.apiUrl}GetPDF/${res}`
+      const link = document.createElement('a')
+      link.href = url
+      link.target = 'blank'
+      link.setAttribute('download', res)
+      document.body.appendChild(link)
+      link.click()
     }
     function deleted(id) {
       $q.dialog({
