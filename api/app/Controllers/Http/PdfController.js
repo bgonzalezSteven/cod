@@ -326,7 +326,7 @@ class PdfController {
     // return docDefinition
     var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
     const dir = Helpers.appRoot("storage/file");
-    const filename = `${dates?.correlative_number}.pdf`;
+    const filename = `${dates.correlative_number}.pdf`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
