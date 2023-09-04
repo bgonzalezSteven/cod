@@ -70,7 +70,7 @@ class PdfController {
         margin: [0, 3, 0, 0],
       },
       {
-        text: `Valor Total - ${dates?.money}`,
+        text: `Valor Total - ${dates.typeValue} ${dates?.money}`,
         alignment: "center",
         margin: [0, 3, 0, 0],
       },
@@ -96,7 +96,7 @@ class PdfController {
             .replace(",", "")}${info.quantity}`,
           alignment: "right",
           border: [true, false, true, false],
-          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+          margin: index !== 0 ? [0, -5, 0, 0] : [0, 0, 0, 0],
         },
         {
           text: `${dates.table[0].description_of_goods
@@ -105,13 +105,13 @@ class PdfController {
             .replace(",", "")}${info.species}`,
           alignment: "left",
           border: [true, false, true, false],
-          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+          margin: index !== 0 ? [0, -5, 0, 0] : [0, 0, 0, 0],
         },
         {
           text: `${info.description_of_goods}`,
           alignment: "left",
           border: [true, false, true, false],
-          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+          margin: index !== 0 ? [0, -5, 0, 0] : [0, 0, 0, 0],
         },
         {
           text: `${dates.table[0].description_of_goods
@@ -120,7 +120,7 @@ class PdfController {
             .replace(",", "")}${info.value}`,
           alignment: "right",
           border: [true, false, true, false],
-          margin: index !== 0 ? [0, -4, 0, 0] : [0,0,0,0],
+          margin: dates.table.length === 1 ? [0, 7, 0, 0] : [0, -4, 0, 0],
         },
       ];
     });
@@ -139,8 +139,8 @@ class PdfController {
             i !== 10 ? [true, false, true, false] : [true, false, true, true],
         },
         {
-          text: i !== temp ? "\n\n\n" : "SUB-TOTAL CPT\nTOTAL",
-          margin: [0, -4, 0, 0],
+          text: i !== temp ? "\n\n\n" : `SUB-TOTAL ${dates.typeValue}\nTOTAL`,
+          margin: [0, -6, 0, 0],
           border:
             i !== 10 ? [true, false, true, false] : [true, false, true, true],
         },
@@ -255,7 +255,7 @@ class PdfController {
               margin: [12, -9, -20, 100],
               text: [
                 {
-                  text: "Av. Benjamin Constant, 876\n\nCentro\nTels: 95 40095378\nFax: 95 32241557\nCEP: 69301020\nBR039CLV230000282900\nBOA VISTA RR BRASIL\n",
+                  text: `Av. Benjamin Constant, 876\n\nCentro\nTels: 95 40095378\nFax: 95 32241557\nCEP: 69301020\n${dates.correlative_number}\nBOA VISTA RR BRASIL\n`,
                   fontSize: 6,
                   font: "Arial",
                 },

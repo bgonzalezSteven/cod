@@ -50,6 +50,10 @@
                 <div style="padding-right: 8px" class="col-xs-11 col-sm-2 col-md-1 col-xl-1">
                   <q-input outlined v-model="state.form.money" label="Moneda" :error="v$.form.money.$error"
                     error-message="Campo necesario"/>
+                </div>            
+                <div style="padding-right: 8px" class="col-xs-11 col-sm-2 col-md-1 col-xl-1">
+                  <q-input outlined v-model="state.form.typeValue" placeholder="FCA" label="Tipo de valor" :error="v$.form.typeValue.$error"
+                    error-message="Campo necesario"/>
                 </div>
             </div>
             <div class="row items-center justify-center">
@@ -132,7 +136,8 @@ export default {
         transport: '',
         gross_weight: '',
         liquid_weight: '',
-        correlative_number: ''
+        correlative_number: '',
+        typeValue: ''
       }
     })
 
@@ -168,7 +173,8 @@ export default {
         gross_weight: { required },
         liquid_weight: { required },
         correlative_number: { required },        
-        money: { required },
+        money: { required },  
+        typeValue: { required },
       }
     }
 
