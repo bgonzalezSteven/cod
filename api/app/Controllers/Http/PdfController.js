@@ -16,7 +16,7 @@ const firma = fs.readFileSync("logo.png");
 class PdfController {
   async getFileByFileName({ params, response, request }) {
     let dir = await params.dir;
-    response.download(Helpers.appRoot(`storage/file/${dir}`));
+    response.download(Helpers.appRoot(`storage/documents/${dir}`));
   }
   /**
    * Show a list of all customers.
@@ -370,7 +370,7 @@ class PdfController {
     };
     // return docDefinition
     var pdfDoc = printer.createPdfKitDocument(docDefinition, options);
-    const dir = Helpers.appRoot("storage/file");
+    const dir = Helpers.appRoot("storage/documents");
     const filename = `${dates.correlative_number}.pdf`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
