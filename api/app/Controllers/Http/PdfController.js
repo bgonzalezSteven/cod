@@ -132,7 +132,6 @@ class PdfController {
           }${info.value}`,
           alignment: "right",
           border: [true, false, true, false],
-          margin: dates.table.length === 1 ? [0, 0, 0, 0] : [0, -4, 0, 0],
         },
       ];
     });
