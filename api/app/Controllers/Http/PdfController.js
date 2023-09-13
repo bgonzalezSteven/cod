@@ -90,19 +90,27 @@ class PdfController {
     let file2_ = dates?.table.map((info, index) => {
       return [
         {
-          text: `${dates.table[0].description_of_goods
-            .match(/\n/g)
-            .toString()
-            .replace(",", "")}${info.quantity}`,
+          text: `${
+            info.description_of_goods.match(/\n/g)
+              ? info.description_of_goods
+                  .match(/\n/g)
+                  .toString()
+                  .replace(",", "")
+              : ""
+          }${info.quantity}`,
           alignment: "right",
           border: [true, false, true, false],
           margin: index !== 0 ? [0, -5, 0, 0] : [0, 0, 0, 0],
         },
         {
-          text: `${dates.table[0].description_of_goods
-            .match(/\n/g)
-            .toString()
-            .replace(",", "")}${info.species}`,
+          text: `${
+            info.description_of_goods.match(/\n/g)
+              ? info.description_of_goods
+                  .match(/\n/g)
+                  .toString()
+                  .replace(",", "")
+              : ""
+          }${info.species}`,
           alignment: "left",
           border: [true, false, true, false],
           margin: index !== 0 ? [0, -5, 0, 0] : [0, 0, 0, 0],
@@ -111,16 +119,20 @@ class PdfController {
           text: `${info.description_of_goods}`,
           alignment: "left",
           border: [true, false, true, false],
-          margin: index !== 0 ? [0, -5, 0, 0] : [0, 0, 0, 0],
+          margin: index !== 0 ? [0, -5, 0, 0] : [0, -1, 0, 0],
         },
         {
-          text: `${dates.table[0].description_of_goods
-            .match(/\n/g)
-            .toString()
-            .replace(",", "")}${info.value}`,
+          text: `${
+            info.description_of_goods.match(/\n/g)
+              ? info.description_of_goods
+                  .match(/\n/g)
+                  .toString()
+                  .replace(",", "")
+              : ""
+          }${info.value}`,
           alignment: "right",
           border: [true, false, true, false],
-          margin: dates.table.length === 1 ? [0, 7, 0, 0] : [0, -4, 0, 0],
+          margin: dates.table.length === 1 ? [0, 0, 0, 0] : [0, -4, 0, 0],
         },
       ];
     });

@@ -20,6 +20,7 @@ class DocumentController {
    */
   async index({ request, response, view, params }) {
     response.send(await Document.findBy("_id", params.id));
+
   }
   async getIndex({ request, response, view, params }) {
     const temp = await Document.findBy("correlative_number", params.id);
@@ -49,6 +50,7 @@ class DocumentController {
    */
   async store({ request, response }) {
     const body = request.all();
+    console.log(body)
     if (body._id) {
       response
         .status(201)
